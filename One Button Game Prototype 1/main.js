@@ -43,6 +43,8 @@ let myDude;
 const myDudeX = 9;
 let jumps = 2;
 let jumped = 0;
+            // 1        2       3     
+let colors = ["cyan", "red", "green"];
 
 
 function update() {
@@ -60,7 +62,6 @@ function update() {
      if(input.isJustPressed){
       myDude.vy = -1.5 * sqrt(difficulty) * 1;
       myDude.state = "jump";
-     //jumped++;
      }
 
   }
@@ -69,12 +70,11 @@ function update() {
     myDude.y += myDude.vy;
     if(input.isJustPressed && (jumped < jumps)){
       myDude.vy = -1.5 * sqrt(difficulty) * 1;
-      //myDude.state = "jump";
       jumped++;
      }
   } 
   if(input.isPressed){
-    myDude.speed += (2 - myDude.speed) * 2.005;
+    myDude.speed += (2 - myDude.speed) * 2.01;
   }else{
     myDude.speed += (1 - myDude.speed) * 0.2;
   }
@@ -95,10 +95,13 @@ function update() {
     nextRailDist += r.width + rnd(10,20);
   }
   let isONRail = false;
+  
   remove(rails, (r) => {
     r.pos.x -= scr;
-    color("cyan");
+    //colour = rnd(1, 3);
+    color(colors[rndi(0, 3)]);
     const c1 = rect(r.pos, r.width, 1).isColliding.char;
+    
     if((c1.a || c1.b) && myDude.vy * 1 > 0 ){
       myDude.state = "run";
       myDude.y = r.pos.y + -3;
