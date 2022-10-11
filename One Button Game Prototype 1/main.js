@@ -101,7 +101,6 @@ function update() {
     //colour = rnd(1, 3);
     color(colors[rndi(0, 3)]);
     const c1 = rect(r.pos, r.width, 1).isColliding.char;
-    
     if((c1.a || c1.b) && myDude.vy * 1 > 0 ){
       myDude.state = "run";
       myDude.y = r.pos.y + -3;
